@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+kita membuat aplikasi ini linear kebawah sehingga kita menggunakan linear layout
+jangan lupa menambahkan atribut orientation yang bernilai vertical
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <!--
+    karena kita ingin memunculkan image yang bertumpukan dengan tulisan onlineyobana.com,
+    maka kita harus menggunakan relativelayout yang lebarnya sesuai parent (match_parent) dan
+    tinggi kita buat 150dp (mau beda ukuran juga boleh juga boleh)
+    -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <!-- membuat ImageView untuk menampilkan gambar yang kita inginkan
+        1. set lebar layout sesuai lebar parent
+        2. set tinggi layout sesuai tinggi parent nya
+        3. ambil source image (menggunakan atribut android:src) header, jangan lupa di copy dulu dan paste
+           ke folder drawable
+        4. set scaleType kita menjadi centercrop
+         -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/header"
+            android:scaleType="centerCrop"/>
+
+        <!-- membuat TextView untuk menampilkan tulisan "onlineyobana.com"
+        1. berikan id tv_url, karena view ini perlu dikenali oleh kode java kita karea kita akan membuatnya bisa di klik
+        2. set lebar dan tinggi layout menjadi wrap_content
+        3. set text untuk berisikan teks "onlineyobana.com"
+        4. jadikan text berwarna hitam (#FFFFFF)
+        5. ubah ukuran teks kita menjadi 20sp
+        6. bikin dia nempel ke bagian bawah parentnya dengan layout_alignParentBottom
+        7. bikin layout_margin menjadi 8d0 biar agak nggak terlalu nempel (diberijarak sebesar 8dp
+        8. set atribut onClick bernilai "tekanURL" karena kita membuat method di kelas java kita yang berisikan
+        instruksi yang akan dilakukan view ini, yang dalam hal ini membuka website google *cek class MainActivity.java kita
+        -->
+        <TextView
+            android:id="@+id/tv_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="onlineyobana.com"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="8dp"
+            android:onClick="tekanURL"/>
+    </RelativeLayout>
+
+    <!--membuat teks MENU yang berukuran 20sp berwana black dengan ukuran lebar dan tinggi wrap_content dan diberi jarak dari kiri
+    sebesar 8dp -->
+    <TextView
+        android:textSize="20sp"
+        android:text="MENU :"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        />
+
+    <!--kita membuat LinearLayout karena kita ingin menampilkan text menu kita, button -, angka, dan button + secara horizontal
+     sehingga kita harus membuat ke empat textview tsb (TextView, Button, TextView, Button) dalam sebuah linear layout
+     secara default orientationnya horizontal
+     -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- text untuk menu Paha-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Paha @7000"
+            android:layout_weight="1"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="16dp"/>
+
+        <!-- tombol yang ketika dipencet akan mengurangi kuantitas paha yang dipesan
+        di kasi id karena kita akan membuat apa-yang-akan-dilakukan-tombol pada method kurangPaha()
+        ini di class MainActivity.java kita-->
+        <Button
+            android:id="@+id/minusPaha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="20sp"
+            android:onClick="kurangPaha"
+            />
+
+        <!-- Text yang menampilkan kuantitas paha yang ingin diorder dikasi id karena kita ingin text ini berubah sesuai
+        tombol + atau - yang dipencet user-->
+        <TextView
+            android:id="@+id/jumlahPaha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="0"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="16dp"/>
+
+        <!-- tombol yang ketika dipencet akan menambah kuantitas paha yang dipesan
+        di kasi id karena kita akan membuat apa-yang-akan-dilakukan-tombol pada method tambahPaha() ini di class MainActivity.java kita-->
+        <Button
+            android:id="@+id/plusPaha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:layout_marginLeft="16dp"
+            android:textSize="20sp"
+            android:onClick="tambahPaha"
+            />
+    </LinearLayout>
+
+    <!--
+        keterangan persis seperti yang diatas
+    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- ini cuma beda text nya diganti dengan Dada @8500-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Dada @8500"
+            android:layout_weight="1"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="16dp"/>
+
+        <!-- tombol yang ketika dipencet akan mengurangi kuantitas dada yang dipesan
+            di kasi id karena kita akan membuat apa-yang-akan-dilakukan-tombol pada method kurangDada()
+            ini di class MainActivity.java kita-->
+        <Button
+            android:id="@+id/minusDada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="20sp"
+            android:onClick="kurangDada"
+            />
+        <!-- teks yang menampilkan kuantitas dada dikasi id karena kita ingin text ini dapat berubah
+         apabila tombol - atau + di pencet user
+         -->
+        <TextView
+            android:id="@+id/jumlahDada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="0"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="16dp"/>
+
+        <!-- tombol yang ketika dipencet akan menambah kuantitas dada yang dipesan
+       di kasi id karena kita akan membuat apa-yang-akan-dilakukan-tombol pada method tambahDada()
+       ini di class MainActivity.java kita-->
+        <Button
+            android:id="@+id/plusDada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:layout_marginLeft="16dp"
+            android:textSize="20sp"
+            android:onClick="tambahDada"
+            />
+    </LinearLayout>
+
+    <!-- membuat sebuah view CheckBox dengan id extra (karena kita akan melihat dari kelas java kita apakah
+    view ini di checklist atau tidak oleh user -->
+    <CheckBox
+        android:id="@+id/extra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Extra Kremesh"
+        android:textSize="20sp"/>
+
+    <!-- menampilkan text "TOTAL"-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="16dp"
+        android:text="TOTAL"
+        android:gravity="center"
+        />
+
+    <!-- menampilkan text yang diberi id totalBayar karena kita ingin menampilkan total harga yang akan dibayar si user -->
+    <TextView
+        android:id="@+id/totalBayar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="35sp"
+        android:gravity="center"
+        android:textColor="@android:color/black"/>
+    <!-- Teks yang akan menampilkan ringkasan orderan dari user, untuk awal kita sembunyikan dulu dia dengan
+    atribut android:visibility="invisible"-->
+    <TextView
+        android:id="@+id/ordersummary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="nanti disini ada order summary"
+        android:visibility="invisible"/>
+
+    <!-- Saya ingin buat button yang nempel ke paling bawah sehingga saya buat buttonnya dalam relative layout,
+
+    jadi ukuran relativelayout ini saya buat untuk mengisi sisa ruang yang ada dnegan attribut layout_weight = 1
+    lalu saya buat view Button dengan atribut alignParentBottom agar dia nempel kebawahf-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/btnOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="ORDER"
+            android:onClick="tekanOrder"/>
+
+
+    </RelativeLayout>
+
+</LinearLayout>
